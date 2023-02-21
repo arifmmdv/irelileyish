@@ -1,0 +1,63 @@
+<x-app-layout>
+
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ $sectionType->plural }} - {{ __('Add new') }}
+            </h2>
+            <a href="{{ route('sections.index') }}" class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                {{ $sectionType->plural }}
+            </a>
+        </div>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg pt-2">
+                {!! Form::open(['route' => 'sections.store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                    <div class="shadow overflow-hidden sm:rounded-md">
+                        <div class="px-4 py-5 bg-white sm:p-6">
+                            <div class="">
+                            @foreach($languages as $language)
+                                <div class="p-2">
+                                    <label for="title_{{$language->locale}}" class="block font-medium text-gray-700">Title - {{$language->locale}}</label>
+                                    <input 
+                                        type="text" name="title_{{$language->locale}}" id="title_{{$language->locale}}" 
+                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                            @endforeach
+
+                                <div class="w-full p-2">
+                                    <label for="image" class="block font-medium text-gray-700">Image</label>
+                                    <input type="file" name="image" id="image" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+
+                                @isset($section)
+                                <input type="hidden" name="parent_id" value="{{ $section->id }}"/>
+                                @else
+                                <input type="hidden" name="parent_id" value="0"/>
+                                @endisset
+                                <input type="hidden" name="section_type_id" value="{{ $sectionType->id }}"/>
+
+                                @foreach($languages as $language)
+                                    <div class="w-full p-2">
+                                        <label for="content_{{$language->locale}}" class="block font-medium text-gray-700">Content - {{$language->locale}}</label>
+                                        <textarea 
+                                            name="content_{{$language->locale}}" 
+                                            id="content_{{$language->locale}}" cols="30" rows="10" 
+                                            class="textarea "></textarea>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                            <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Create
+                            </button>
+                        </div>
+                    </div>
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</x-app-layout>

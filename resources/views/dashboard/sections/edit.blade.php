@@ -133,71 +133,71 @@
 
             <div class="flex flex-wrap">
                 <div class="w-9/12 p-1">
-                    @if(isset($section->template->fields))
+                    @if(isset($section->template->fields) && count($section->template->fields) > 0)
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                         <div class="px-4 py-4 bg-gray-50 sm:px-6 border-b border-gray-300">
                             <h3 class="font-semibold text-md text-gray-800 leading-tight">Custom Fields</h3>
                         </div>
                         <div class="p-4">
                             @foreach($section->template->fields as $field)
-															@if($field->field_type == 1)
-																@foreach($languages as $language)
-																	<div class="p-2">
-																			<label 
-																					for="{{$field->slug}}_{{$language->locale}}" 
-																					class="block font-medium text-gray-700">
-																							{{$field->title}} - <span>{{$language->locale}}</span>
-																			</label>
-																			<input 
-																					type="text" 
-																					value="{{$field->value($section->id, $language->locale)}}"
-																					name="custom_{{$field->slug}}_{{$language->locale}}" 
-																					id="{{$field->slug}}_{{$language->locale}}"  
-																					class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-																		</div>
-																@endforeach
-																@elseif($field->field_type == 2)
-																	@foreach($languages as $language)
-																		<div class="p-2">
-																			<label 
-																				for="{{$field->slug}}_{{$language->locale}}" 
-																				class="block font-medium text-gray-700">
-																						{{$field->title}} - <span>{{$language->locale}}</span>
-																			</label>
-																			<textarea
-																				class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" 
-																				name="custom_{{$field->slug}}_{{$language->locale}}"
-																				id="" cols="30" rows="10">{!! $field->value($section->id, $language->locale) !!}</textarea>
-																			</div>
-																		@endforeach
-																		@elseif($field->field_type == 3)
-																			<div class="p-2">
-																				<label 
-																						for="{{$field->slug}}_{{$language->locale}}" 
-																						class="block font-medium text-gray-700">
-																								{{$field->title}}
-																				</label>
-																				<div class="w-full flex flex-wrap items-center">
-																					<input 
-																						type="file"
-																						name="custom_{{$field->slug}}" 
-																						id="{{$field->slug}}_{{$language->locale}}"  
-																						class="mt-1 block w-8/12 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
-																						@if($field->getFirstMedia('field') !== null)
-																							<div class="w-2/12 pl-1">
-																								<a href="{{ route('sections.deleteImage',$field->getFirstMedia('field')->id) }}" 
-																										onclick="return confirm('Are you sure?')" 
-																										class="w-full inline-flex items-center justify-center mt-1 px-4 py-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:rose-2 focus:ring-offset-2 focus:ring-rose-500">
-																									Delete
-																								</a>
-																							</div>
-																							<div class="w-2/12 pl-1">
-																								<img src="{{$field->getFirstMediaUrl('field')}}" alt="{{$field->title}}">
-																							</div>
-																						@endif
-																				</div>
-																			</div>
-																		@endif
+                                @if($field->field_type == 1)
+                                    @foreach($languages as $language)
+                                        <div class="p-2">
+                                            <label 
+                                                for="{{$field->slug}}_{{$language->locale}}" 
+                                                class="block font-medium text-gray-700">
+                                                        {{$field->title}} - <span>{{$language->locale}}</span>
+                                            </label>
+                                            <input 
+                                                type="text" 
+                                                value="{{$field->value($section->id, $language->locale)}}"
+                                                name="custom_{{$field->slug}}_{{$language->locale}}" 
+                                                id="{{$field->slug}}_{{$language->locale}}"  
+                                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                        </div>
+                                    @endforeach
+                                    @elseif($field->field_type == 2)
+                                        @foreach($languages as $language)
+                                            <div class="p-2">
+                                                <label 
+                                                    for="{{$field->slug}}_{{$language->locale}}" 
+                                                    class="block font-medium text-gray-700">
+                                                        {{$field->title}} - <span>{{$language->locale}}</span>
+                                                </label>
+                                                <textarea
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" 
+                                                    name="custom_{{$field->slug}}_{{$language->locale}}"
+                                                    id="" cols="30" rows="10">{!! $field->value($section->id, $language->locale) !!}</textarea>
+                                                </div>
+                                            @endforeach
+                                            @elseif($field->field_type == 3)
+                                                <div class="p-2">
+                                                    <label 
+                                                            for="{{$field->slug}}_{{$language->locale}}" 
+                                                            class="block font-medium text-gray-700">
+                                                                    {{$field->title}}
+                                                    </label>
+                                                    <div class="w-full flex flex-wrap items-center">
+                                                        <input 
+                                                            type="file"
+                                                            name="custom_{{$field->slug}}" 
+                                                            id="{{$field->slug}}_{{$language->locale}}"  
+                                                            class="mt-1 block w-8/12 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                                            @if($field->getFirstMedia('field') !== null)
+                                                                <div class="w-2/12 pl-1">
+                                                                    <a href="{{ route('sections.deleteImage',$field->getFirstMedia('field')->id) }}" 
+                                                                            onclick="return confirm('Are you sure?')" 
+                                                                            class="w-full inline-flex items-center justify-center mt-1 px-4 py-3 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-rose-600 hover:bg-rose-700 focus:outline-none focus:rose-2 focus:ring-offset-2 focus:ring-rose-500">
+                                                                        Delete
+                                                                    </a>
+                                                                </div>
+                                                                <div class="w-2/12 pl-1">
+                                                                    <img src="{{$field->getFirstMediaUrl('field')}}" alt="{{$field->title}}">
+                                                                </div>
+                                                            @endif
+                                                    </div>
+                                                </div>
+                                            @endif
                                 <hr class="mt-4 mb-1">
                             @endforeach
                         </div>

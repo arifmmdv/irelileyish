@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('status')->default('draft');
             $table->string('class_name')->nullable();
             $table->integer('sub_sections_template')->default(0);
+            $table->integer('section_type_id');
             $table->text('title');
             $table->text('content')->nullable();
             $table->text('seo_title')->nullable();

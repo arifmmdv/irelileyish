@@ -63,7 +63,7 @@ class SectionController extends Controller
 
         $section->parent_id = $request->input('parent_id');
         $section->section_type_id = $request->input('section_type_id');
-        $section->slug = $this->uniqueSlug($request->input("title_en"));
+        $section->slug = $this->uniqueSlug($request->input("title_az"));
 
         if(!empty($parent_section->sub_sections_template)){
             $section->template_id = $parent_section->sub_sections_template;

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('templates', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->integer("hide_content")->default(0);
             $table->timestamps();
         });
     }

@@ -65,6 +65,7 @@ class TemplateController extends Controller
     public function update(UpdateTemplateRequest $request, Template $template)
     {
         $template->title = $request->input('title');
+        $template->hide_content = $request->input('hide_content');
         $template->save();
 
         return redirect('/dashboard/templates/')->with('success', 'Template updated!');

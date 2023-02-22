@@ -21,6 +21,13 @@
                                     <label for="title" class="block font-medium text-gray-700">Title</label>
                                     <input type="text" name="title" id="title" value="{{$template->title}}" autocomplete="given-name" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
+                                <div class="w-1/2 p-2">
+                                    <label for="hide_content" class="block font-medium text-gray-700">Content</label>
+                                    <select id="hide_content" name="hide_content" autocomplete="hide_content" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                                        <option value="0" @if($template->hide_content == 0)selected @endif>Show</option>
+                                        <option value="1" @if($template->hide_content == 1)selected @endif>Hide</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         {{Form::hidden('_method','PUT')}}

@@ -138,58 +138,72 @@ class SectionController extends Controller
         $section->class_name = $request->input('class');
 
         if($request->hasFile('image')){
-					$filenameWithExt = $request->file('image')->getClientOriginalName();
-					$filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-					$extension = $request->file('image')->getClientOriginalExtension();
-					$filename = Str::slug($filename, '-');
-					$fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $filenameWithExt = $request->file('image')->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $request->file('image')->getClientOriginalExtension();
+            $filename = Str::slug($filename, '-');
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
 
-					$section->addMedia($request->file('image'))
-						->usingFileName($fileNameToStore)
-						->toMediaCollection('main');
+            $section->addMedia($request->file('image'))
+                ->usingFileName($fileNameToStore)
+                ->toMediaCollection('main');
+        }
+
+        if($request->file('images')) {
+            foreach ($request->file('images') as $key => $image) {
+                $filenameWithExt = $image->getClientOriginalName();
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                $extension = $image->getClientOriginalExtension();
+                $filename = Str::slug($filename, '-');
+                $fileNameToStore = $filename.'_'.time().'.'.$extension;
+
+                $section->addMedia($image)
+                ->usingFileName($fileNameToStore)
+                ->toMediaCollection('images');
+            }
         }
 
         $section->save();
 
         // Save Fields
         if(isset($section->template->fields)) {
-					foreach ($section->template->fields as $field) {
-						if($field->field_type == 3) {
-							// Upload Image
+            foreach ($section->template->fields as $field) {
+                if($field->field_type == 3) {
+                    // Upload Image
 
-							if($request->hasFile("custom_".$field->slug)){
-								$filenameWithExt = $request->file("custom_".$field->slug)->getClientOriginalName();
-								$filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-								$extension = $request->file("custom_".$field->slug)->getClientOriginalExtension();
-								$filename = Str::slug($filename, '-');
-								$fileNameToStore = $filename.'_'.time().'.'.$extension;
-								
-								$field->addMedia($request->file("custom_".$field->slug))
-									->usingFileName($fileNameToStore)
-									->toMediaCollection('field');
-							}
+                    if($request->hasFile("custom_".$field->slug)){
+                        $filenameWithExt = $request->file("custom_".$field->slug)->getClientOriginalName();
+                        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                        $extension = $request->file("custom_".$field->slug)->getClientOriginalExtension();
+                        $filename = Str::slug($filename, '-');
+                        $fileNameToStore = $filename.'_'.time().'.'.$extension;
+                        
+                        $field->addMedia($request->file("custom_".$field->slug))
+                            ->usingFileName($fileNameToStore)
+                            ->toMediaCollection('field');
+                    }
 
-						} else {
-							if (FieldValue::where(['section_id' => $section->id, 'field_id' => $field->id])->exists()) {
-								$fieldValue = FieldValue::where(['section_id' => $section->id, 'field_id' => $field->id])->first();
-							} else {
-								$fieldValue = new FieldValue;
-								$fieldValue->field_id = $field->id;
-								$fieldValue->section_id = $section->id;
-							}
-							
-							$value = [];
-							foreach ($languages as $language){
-								$value[$language->locale] = htmlspecialchars($request->input("custom_".$field->slug."_".$language->locale));
-							}
-							$fieldValue->replaceTranslations(
-								'field_value', 
-								$value
-							);
-							$fieldValue->save();	
-						}
+                } else {
+                    if (FieldValue::where(['section_id' => $section->id, 'field_id' => $field->id])->exists()) {
+                        $fieldValue = FieldValue::where(['section_id' => $section->id, 'field_id' => $field->id])->first();
+                    } else {
+                        $fieldValue = new FieldValue;
+                        $fieldValue->field_id = $field->id;
+                        $fieldValue->section_id = $section->id;
+                    }
+                    
+                    $value = [];
+                    foreach ($languages as $language){
+                        $value[$language->locale] = htmlspecialchars($request->input("custom_".$field->slug."_".$language->locale));
+                    }
+                    $fieldValue->replaceTranslations(
+                        'field_value', 
+                        $value
+                    );
+                    $fieldValue->save();	
+                }
 
-					}
+            }
         }
 
         return redirect()->back()->with('success', 'Section updated!');
@@ -211,5 +225,21 @@ class SectionController extends Controller
         $media = Media::find($id);
         $media->delete();
         return redirect()->back()->with('success', 'Image Removed!');
+    }
+
+    public function mainImage ($id) {
+        // order_column
+        $media = Media::find($id);
+        $firstMedia = Section::find($media->model_id)->getFirstMedia('images');
+
+        $mOrder = $media->order_column;
+        $fOrder = $firstMedia->order_column;
+
+        $media->order_column = $fOrder;
+        $firstMedia->order_column = $mOrder;
+        $media->save();
+        $firstMedia->save();
+
+        return redirect()->back()->with('success', 'Main Image Updated!');
     }
 }

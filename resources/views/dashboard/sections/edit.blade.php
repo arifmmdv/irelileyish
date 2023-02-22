@@ -61,7 +61,7 @@
                 </div>
                 <div class="w-3/12 p-1">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
-                    <div class="w-full p-2">
+                        <div class="w-full p-2">
                             <label for="status" class="block font-medium text-gray-700">{{ __('Status') }}</label>
                             <select id="status" name="status" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="published" @if($section->status === "published") selected @endif >Published</option>
@@ -80,6 +80,7 @@
                         <div class="w-full p-2">
                             <label for="sub_sections_template" class="block font-medium text-gray-700">{{ __('Sub Templates') }}</label>
                             <select id="sub_sections_template" name="sub_sections_template" autocomplete="sub_sections_template" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="0">{{ __('Templates') }}</option>
                                 @foreach($templates as $template)
                                     <option value="{{$template->id}}" @if($section->sub_sections_template == $template->id) selected @endif >{{$template->title}}</option>
                                 @endforeach
@@ -88,6 +89,43 @@
                         <div class="p-2">
                             <label for="class" class="block font-medium text-gray-700">Class</label>
                             <input type="text" name="class" id="class" value="{{$section->class_name}}" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                        </div>
+                    </div>
+                    <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4 mt-2">
+                        <div class="p-2">
+                            <label for="images" class="block font-medium text-gray-700">Images</label>
+                            <input type="file" name="images[]" id="images" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500" multiple>
+                        </div>
+                        <div class="">
+                            @foreach($section->getMedia('images') as $image)
+                                <div class="w-full flex flex-wrap items-center p-2">
+                                    <div class="w-2/12">
+                                        @if(!$loop->first)
+                                        <a href="{{ route('sections.mainImage',$image->id) }}">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+                                                <line x1="12" y1="19" x2="12" y2="5"></line>
+                                                <polyline points="5 12 12 5 19 12"></polyline>
+                                            </svg>
+                                        </a>
+                                        @endif
+                                    </div>
+                                    <a href="{{$image->getUrl()}}" class="w-8/12" target="_blank">
+                                        <img src="{{$image->getUrl()}}" alt="">
+                                    </a>
+                                    <a href="{{ route('sections.deleteImage',$image->id) }}" 
+                                        onclick="return confirm('Are you sure?')" 
+                                        class="w-2/12 px-2">
+                                        <span>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="red" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2">
+                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                                            </svg>
+                                        </span>
+                                    </a>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

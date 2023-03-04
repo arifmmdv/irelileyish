@@ -48,15 +48,17 @@
                                 @endif
                             </div>
                         </div>
-                        @foreach($languages as $language)
-                            <div class="w-full p-2">
-                                <label for="content_{{$language->locale}}" class="block font-medium text-gray-700">Content - {{$language->locale}}</label>
-                                <textarea 
-                                    name="content_{{$language->locale}}" 
-                                    id="content_{{$language->locale}}" cols="30" rows="10" 
-                                    class="textarea ">{!! $section->getTranslation('content', $language->locale) !!}</textarea>
-                            </div>
-                        @endforeach
+                        @if(isset($section->template->hide_content) && $section->template->hide_content === 0)
+                            @foreach($languages as $language)
+                                <div class="w-full p-2">
+                                    <label for="content_{{$language->locale}}" class="block font-medium text-gray-700">Content - {{$language->locale}}</label>
+                                    <textarea 
+                                        name="content_{{$language->locale}}" 
+                                        id="content_{{$language->locale}}" cols="30" rows="10" 
+                                        class="textarea ">{!! $section->getTranslation('content', $language->locale) !!}</textarea>
+                                </div>
+                            @endforeach
+                        @endif
                     </div>
                 </div>
                 <div class="w-3/12 p-1">

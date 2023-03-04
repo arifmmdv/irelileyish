@@ -20,6 +20,9 @@
             .ck-editor__editable {
                 min-height: 300px;
             }
+            .ck-content *{
+                all: revert;
+            }
         </style>
     </head>
     <body class="font-sans antialiased">
@@ -54,7 +57,8 @@
             for (var i = 0; i < textareas.length; i++) {
                 ClassicEditor.create( 
                     document.getElementById(textareas[i].id), {
-                        mediaEmbed: { previewsInData: true }
+                        mediaEmbed: { previewsInData: true },
+                        allowedContent: 'p b i ul li; img[!src]'
                     }
                 )
             }

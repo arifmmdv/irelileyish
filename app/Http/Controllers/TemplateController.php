@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTemplateRequest;
 use App\Http\Requests\UpdateTemplateRequest;
 use App\Models\Template;
+use Illuminate\Support\Str;
 
 class TemplateController extends Controller
 {
@@ -39,6 +40,7 @@ class TemplateController extends Controller
     {
         $template = new Template;
         $template->title = $request->input('title');
+        $template->name = Str::slug($request->input('title'),'-');
         $template->save();
 
         return redirect('/dashboard/templates/')->with('success', 'Template created!');
@@ -65,6 +67,7 @@ class TemplateController extends Controller
     public function update(UpdateTemplateRequest $request, Template $template)
     {
         $template->title = $request->input('title');
+        $template->name = Str::slug($request->input('title'),'-');
         $template->hide_content = $request->input('hide_content');
         $template->save();
 

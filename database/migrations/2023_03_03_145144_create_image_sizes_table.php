@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('templates', function (Blueprint $table) {
+        Schema::create('image_sizes', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('name');
-            $table->integer("hide_content")->default(0);
+            $table->integer('width')->default(0);
+            $table->integer('height')->default(0);
+            $table->integer('template_id')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('templates');
+        Schema::dropIfExists('image_sizes');
     }
 };

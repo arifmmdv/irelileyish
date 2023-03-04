@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->integer("template_id");
             $table->integer("field_type");
+            $table->integer('multiple')->default(0);
             $table->timestamps();
         });
     }

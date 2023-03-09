@@ -1,0 +1,28 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 2em 0;
+}
+
+.navigation {
+
+    ul {
+        display: flex;
+
+        li {
+            padding: 0 0.5em;
+            a {
+                display: block;
+                padding: 0.5em;
+                font-weight: 500;
+                color: #222;
+
+                &:hover {
+                    color: #184176;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,70 @@
+footer {
+    background: #F4F8FF;
+    padding: 4em 0 2em;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .company {
+        ul {
+            display: flex;
+            align-items: flex-end;
+            margin: 1em 0 0;
+
+            li {
+                padding: 0 4px;
+
+                a {
+                    display: block;
+                    padding: 4px;
+                }
+            }
+
+            path {
+                fill: #184176;
+            }
+        }
+    }
+
+    .logos {
+        display: flex;
+
+        > div {
+            padding: 0 1em;
+        }
+    }
+
+    .subscription {
+        text-align: right;
+
+        h3 {
+            color: #184176;
+        }
+
+        span {
+            font-size: 14px;
+        }
+    }
+
+    form {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        margin: 1em 0 0;
+
+        .button {
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+    }
+}
+
+.copyright {
+    display: block;
+    text-align: center;
+    padding: 0 1em;
+    font-size: 14px;
+}

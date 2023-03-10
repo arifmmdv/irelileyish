@@ -17,6 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -41,3 +42,6 @@ Route::middleware(['auth:sanctum', 'verified'
     Route::resource('/section-types', '\App\Http\Controllers\SectionTypeController');
     Route::get('/section-types/{id}/create', '\App\Http\Controllers\SectionTypeController@createSection')->name('section-types.createSection');
 });
+
+Route::get('/{slug}', '\App\Http\Controllers\FrontEndController@page');
+Route::get('/{parent_slug}/{slug}', '\App\Http\Controllers\FrontEndController@subPage');

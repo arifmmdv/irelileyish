@@ -1,7 +1,11 @@
 .container {
     display: block;
     width: 100%;
-    max-width: 1320px;
-    padding: 0 1em;
+    max-width: $wide;
+    padding: 0 1rem;
     margin: 0 auto;
+
+    &.narrow {
+        max-width: $narrow;
+    }
 }

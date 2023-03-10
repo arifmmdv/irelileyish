@@ -1,5 +1,9 @@
 h1 {
-
+    font-size: 36px;
+    line-height: 1.5;
+    font-weight: 600;
+    color: $primary;
+    margin: 0 0 1rem;
 }
 
 h2 {
@@ -8,11 +12,11 @@ h2 {
 
 h3 {
     font-size: 18px;
-    margin: 0 0 0.5em;
+    margin: 0 0 0.5rem;
 }
 
 p {
-    margin: 0 0 1em;
+    margin: 0 0 1rem;
 
     &:last-child {
         margin-bottom: 0;

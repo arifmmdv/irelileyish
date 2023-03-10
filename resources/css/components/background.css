@@ -1,0 +1,9 @@
+.background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 500px;
+    background: linear-gradient(180deg, #E7F2FE 0%, #B9D6F8 100%);
+    z-index: -1;
+}

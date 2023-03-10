@@ -1,0 +1,33 @@
+.page-header {
+    padding: 4rem 0;
+
+    .titleWrapper {
+        display: block;
+        margin: 0 0 1rem;
+        text-align: center;
+
+        p {
+            line-height: 2;
+            font-size: 1rem;
+        }
+    }
+
+    .meta {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+}
+
+.breadcrumbs {
+    display: flex;
+}
+
+.date {
+    display: flex;
+
+    svg {
+        margin-right: 0.5rem;
+    }
+}

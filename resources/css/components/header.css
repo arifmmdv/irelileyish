@@ -3,7 +3,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 2em 0;
+    padding: 2rem 0;
 }
 
 .navigation {
@@ -12,15 +12,16 @@
         display: flex;
 
         li {
-            padding: 0 0.5em;
+            padding: 0 0.5rem;
             a {
                 display: block;
-                padding: 0.5em;
+                padding: 0.5rem;
                 font-weight: 500;
-                color: #222;
+                color: $black;
+                transition: 0.2s;
 
                 &:hover {
-                    color: #184176;
+                    color: $green;
                 }
             }
         }

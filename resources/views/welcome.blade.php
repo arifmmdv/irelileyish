@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,17 +55,46 @@
     </header>
 
     <div class="page-header">
-        <div class="container">
+        <div class="container narrow">
             <div class="titleWrapper">
                 <h1>Xəbərlər</h1>
                 <p>Layihə çərçivəsində həm təcrübəçilər üçün, həmdə sosial tərəfdaşların təcrübəçilərlə bir-başa işləyəcək əməkdaşları (təyin olunacaq mentor) üçün təlimlər təşkil olunur.</p>
             </div>
+        </div>
+        <div class="container">
             <div class="meta">
-                <ul>
+                <ul class="breadcrumbs">
                     <li><a href="#">Ana Səhifə</a></li>
                     <li><a href="#">Haqqımızda</a></li>
                     <li><a href="#">İrəliləyiş nədir?</a></li>
                 </ul>
+
+                <div class="date">
+                    <svg width="14" height="15" viewBox="0 0 14 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6H13V13C13 13.5523 12.5523 14 12 14H2C1.44772 14 1 13.5523 1 13V6Z" stroke="#222222" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 6H13V4C13 3.44772 12.5523 3 12 3H2C1.44772 3 1 3.44772 1 4V6Z" stroke="#222222" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M10.2002 3V1" stroke="#222222" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4 3V1" stroke="#222222" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>24 Fevral 2023</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container narrow">
+        <div class="page-image">
+            <img src="/images/content.jpg" alt="">
+        </div>
+
+        <div class="page-content">
+            <div class="content">
+                <p>Əmək və Əhalinin Sosial Müdafiəsi Nazirliyinin tabeliyində Dövlət Məşğulluq Agentliyinin təşkilatçılığı, Azərbaycan Respublikası Gənclər Fondu və Azərbaycan Tələbə Gənclər Təşkilatları İttifaqının tərəfdaşlığı ilə "İrəliləyİş" layihəsinə start verilib.</p>
+                <p>Layihənin məqsədi ölkədə fəaliyyət göstərən şirkət və təşkilatlarda beynəlxalq normalara uyğunlaşan təcrübə proqramları formalaşdırmaq və yüksək potensiallı gənclərin karyera bacarıqlarını inkişaf etdirmək üçün həmin təcrübə proqramlarında iştirakını təmin etməkdir.</p>
+                <p>Layihə çərçivəsində 1500 ali və ya orta-ixtisas təhsilini bitirən, 29 yaşadək işsiz gənc təlimlərdə və təcrübə proqramlarında iştirak etmək imkanı qazanacaq.</p>
+                <p>Onlara “Əmək bazarının tələbləri”, “Düzgün CV/Rezyume hazırlanması”, “Müsahibəyə hazırlıq”, “Natiqlik və təqdimat bacarıqları”, “Şəxsi-brendinq”, “İstək və rəsmi e-məktubların yazılması”, “Tənqidi düşüncə və problemlərin yaradıcı həlli”, “Vaxtın idarəedilməsi”, “Liderlik və komanda işi”, “Ünsiyyət bacarıqları və böhran idarəetməsi” və s. mövzularda təlimlər keçiriləcək.</p>
+                <p>Təlimləri uğurla bitirən gənclər daha sonra şirkətlərdə 2 aylıq təcrübə proqramlarında iştirak edəcəklər.</p>
+                <p>Layihədə iştirak etmək istəyən namizədlərin aşağıda qeyd edilən "Müraciət et" düyməsinə keçid edərək müraciət formasını doldurması ilk şərtlərdəndir.</p>
             </div>
         </div>
     </div>
@@ -277,6 +306,12 @@
                         </svg>
 
                     </div>
+                    <div>
+                        <img src="/images/agf.png" alt="">
+                    </div>
+                    <div>
+                        <img src="/images/atgt.png" alt="">
+                    </div>
                 </div>
                 <div class="subscription">
                     <h3>Yeniliklərimizi qaçırma.</h3>
@@ -292,6 +327,11 @@
             </div>
         </div>
     </footer>
+    <div class="background">
+        <svg width="257" height="385" viewBox="0 0 257 385" fill="none" xmlns="http://www.w3.org/2000/svg" class="v">
+        <path d="M158.537 -66L90.3054 141.46L33.6397 2.23197H-73L30.8026 248.318L88.4141 384.927V385L256.885 -66H158.537Z" fill="#B9D6F8" fill-opacity="0.5"/>
+        </svg>
+    </div>
     @vite(['resources/css/web.css'])
 </body>
 </html>

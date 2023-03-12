@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/', '\App\Http\Controllers\FrontEndController@index');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -32,6 +34,7 @@ Route::middleware([
 Route::middleware(['auth:sanctum', 'verified'
 ])->prefix('dashboard')->group(function () {
     Route::resource('/languages', '\App\Http\Controllers\LanguageController');
+    Route::resource('/navigations', '\App\Http\Controllers\NavigationController');
     Route::resource('/sections', '\App\Http\Controllers\SectionController');
     Route::get('/sections/{id}/create', '\App\Http\Controllers\SectionController@createSub')->name('sections.createSub');
     Route::get('/sections/{id}/deleteImage', '\App\Http\Controllers\SectionController@deleteImage')->name('sections.deleteImage'); 
@@ -44,4 +47,4 @@ Route::middleware(['auth:sanctum', 'verified'
 });
 
 Route::get('/{slug}', '\App\Http\Controllers\FrontEndController@page');
-Route::get('/{parent_slug}/{slug}', '\App\Http\Controllers\FrontEndController@subPage');
+Route::get('/{parent}/{slug}', '\App\Http\Controllers\FrontEndController@child');

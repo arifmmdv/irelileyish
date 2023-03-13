@@ -82,7 +82,7 @@ class MenuController extends Controller
         $menu->external = $request->input('external');
         $menu->save();
 
-        return redirect('/dashboard/menus/')->with('success', 'Menu updated!');
+        return redirect('/dashboard/menus/'.$menu->id.'/edit')->with('success', 'Menu updated!');
     }
 
     /**

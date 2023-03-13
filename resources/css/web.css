@@ -8,6 +8,7 @@
 @import "./components/footer.css";
 @import "./components/page-header.css";
 @import "./components/page-content.css";
+@import "./components/card.css";
 
 * {
     padding: 0;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
 use App\Models\Menu;
+use App\Models\Navigation;
 
 class MenuController extends Controller
 {
@@ -13,9 +14,9 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $menus =  Menu::all();
+        $nav =  Menu::where();
         return view('dashboard.menus.index')->with("menus",$menus);
     }
 
@@ -24,9 +25,10 @@ class MenuController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('dashboard.menus.create');
+        $navigation =  Navigation::find($id);
+        return view('dashboard.menus.create',compact('navigation'));
     }
 
     /**
@@ -39,11 +41,17 @@ class MenuController extends Controller
     {
         $menu = new Menu;
         $menu->title = $request->input('title');
-        $menu->dir = $request->input('dir');
-        $menu->locale = $request->input('locale');
+        $menu->slug = $request->input('slug');
+        $menu->external = $request->input('external');
+        $menu->parent_id = $request->input('parent_id');
+        $menu->navigation_id = $request->input('navigation_id');
         $menu->save();
 
-        return redirect('/dashboard/menus/')->with('success', 'Menu created!');
+        if ($menu->parent_id != 0) {
+            return redirect('/dashboard/menus/'.$request->input('parent_id').'/edit')->with('success', 'Menu created!');
+        } else {
+            return redirect('/dashboard/navigations/'.$menu->navigation_id.'/edit')->with('success', 'Menu created!');
+        }
     }
 
     /**
@@ -54,7 +62,10 @@ class MenuController extends Controller
      */
     public function edit(Menu $menu)
     {
-        return view('dashboard.menus.edit')->with('menu', $menu);
+        $parent_id = $menu->id;
+        $navigation_id = $menu->navigation_id;
+        $menus = $menu->children;
+        return view('dashboard.menus.edit',compact('menu','parent_id','navigation_id','menus'));
     }
 
     /**
@@ -67,8 +78,8 @@ class MenuController extends Controller
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
         $menu->title = $request->input('title');
-        $menu->dir = $request->input('dir');
-        $menu->locale = $request->input('locale');
+        $menu->slug = $request->input('slug');
+        $menu->external = $request->input('external');
         $menu->save();
 
         return redirect('/dashboard/menus/')->with('success', 'Menu updated!');
@@ -83,6 +94,6 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         $menu->delete();
-        return redirect('/dashboard/menus/')->with('success', 'Menu Removed!');
+        return redirect()->back()->with('success', 'Menu Removed!');
     }
 }

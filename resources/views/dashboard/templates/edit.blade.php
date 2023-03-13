@@ -13,7 +13,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg pt-2">
-            {!! Form::open(['route' => ['templates.update',$template->id], 'method' => 'POST']) !!}
+                {!! Form::open(['route' => ['templates.update',$template->id], 'method' => 'POST']) !!}
                     <div class="shadow overflow-hidden sm:rounded-md">
                         <div class="px-4 py-5 bg-white sm:p-6">
                             <div class="flex flex-wrap">

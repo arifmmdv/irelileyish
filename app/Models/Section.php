@@ -31,6 +31,11 @@ class Section extends Model implements HasMedia
         return $this->hasMany('App\Models\Section', 'parent_id','id');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('App\Models\Section', 'parent_id','id');
+    }
+
     public function fields()
     {
         return $this->hasMany('App\Models\FieldValue', 'section_id','id');

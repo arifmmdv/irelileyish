@@ -44,6 +44,7 @@ Route::middleware(['auth:sanctum', 'verified'
     Route::resource('/fields', '\App\Http\Controllers\FieldController');
     Route::resource('/section-types', '\App\Http\Controllers\SectionTypeController');
     Route::get('/section-types/{id}/create', '\App\Http\Controllers\SectionTypeController@createSection')->name('section-types.createSection');
+    Route::resource('/menus', '\App\Http\Controllers\MenuController');
 });
 
 Route::get('/{slug}', '\App\Http\Controllers\FrontEndController@page');

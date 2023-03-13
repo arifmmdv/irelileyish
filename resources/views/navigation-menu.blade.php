@@ -30,6 +30,9 @@
                     <x-jet-nav-link href="{{ route('section-types.index') }}" :active="request()->routeIs('section-types.index')">
                         Section Types
                     </x-jet-nav-link>
+                    <x-jet-nav-link href="{{ route('navigations.index') }}" :active="request()->routeIs('navigations.index')">
+                        Navigations
+                    </x-jet-nav-link>
                 </div>
             </div>
 

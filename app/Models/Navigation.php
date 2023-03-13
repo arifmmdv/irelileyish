@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Navigation extends Model
 {
     use HasFactory;
+
+    public function menus()
+    {
+        return $this->hasMany('App\Models\Menu')->where('parent_id',0);
+    }
 }

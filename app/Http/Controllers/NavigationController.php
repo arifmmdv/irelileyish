@@ -52,7 +52,15 @@ class NavigationController extends Controller
      */
     public function edit(Navigation $navigation)
     {
-        return view('dashboard.navigations.edit')->with('navigation', $navigation);
+        $parent_id = 0;
+        $navigation_id = $navigation->id;
+        $menus = $navigation->menus;
+        return view('dashboard.navigations.edit',compact('navigation','parent_id','navigation_id','menus'));
+    }
+
+    public function show(Navigation $navigation)
+    {
+        return view('dashboard.navigations.show')->with('navigation', $navigation);
     }
 
     /**

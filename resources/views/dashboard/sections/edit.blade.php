@@ -20,11 +20,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-
             {!! Form::open(['route' => ['sections.update',$section->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             <div class="flex flex-wrap">
                 <div class="w-9/12 p-1">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg p-4">
+                        <p class="p-2">Url:
+                            <a href="@if($section->parent_id != 0)/{{$section->parent->slug}}@endif/{{$section->slug}}" target="_blank">
+                                @if($section->parent_id != 0)/{{$section->parent->slug}}@endif/{{$section->slug}}
+                            </a>
+                        </p>
                         @foreach($languages as $language)
                         <div class="p-2">
                             <label for="title_{{$language->locale}}" class="block font-medium text-gray-700">Title - {{$language->locale}}</label>

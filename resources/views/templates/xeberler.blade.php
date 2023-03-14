@@ -6,15 +6,15 @@
 <div class="container">
     <div class="row">
         @foreach($children as $child)
-            <div class="col col-20">
-                @include('components.card',[
-                    'image' => $child['image'],
+            <div class="col col-3">
+                @include('components.card', [
                     'title' => $child['title'],
-                    'link' => $child['fields']['link'],
-                    'icon' => 'link',
+                    'link' => $child['slug'],
+                    'icon' => 'readMore',
                     'size' => 's-100',
-                    'showTitle' => false,
-                    'external' => true,
+                    'showTitle' => true,
+                    'image' => $child['image'],
+                    'external' => false,
                     'className' => ''
                 ])
             </div>

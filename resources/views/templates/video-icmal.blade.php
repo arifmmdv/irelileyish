@@ -9,16 +9,22 @@
             <div class="col col-3">
                 @include('components.card', [
                     'title' => $child['title'],
-                    'link' => $child['slug'],
-                    'icon' => 'readMore',
-                    'size' => '',
+                    'link' => $child['fields']['video_link'],
+                    'icon' => 'video',
+                    'size' => 's-56',
                     'showTitle' => true,
                     'image' => $child['image'],
                     'external' => false,
-                    'className' => ''
+                    'className' => 'glightboxVideo'
                 ])
             </div>
         @endforeach
     </div>
 </div>
+
+<script>
+    var lightboxVideo = GLightbox({
+        selector: '.glightboxVideo'
+    });
+</script>
 @endsection

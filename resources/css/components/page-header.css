@@ -3,7 +3,7 @@
 
     .titleWrapper {
         display: block;
-        margin: 0 0 1rem;
+        margin: 0 0 4rem;
         text-align: center;
 
         p {
@@ -22,6 +22,24 @@
 
 .breadcrumbs {
     display: flex;
+
+    span {
+        display: block;
+        height: 100%;
+    }
+
+    svg {
+        position: absolute;
+        right: 4px;
+    }
+
+    a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-right: 32px;
+        color: $primary;
+    }
 }
 
 .date {

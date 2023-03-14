@@ -6,4 +6,17 @@
     height: 500px;
     background: linear-gradient(180deg, #E7F2FE 0%, #B9D6F8 100%);
     z-index: -1;
+    overflow: hidden;
+
+    .v {
+        position: absolute;
+        top: -1px;
+        left: -1px;
+    }
+
+    .stairs {
+        position: absolute;
+        right: -1px;
+        bottom: -1px;
+    }
 }

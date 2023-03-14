@@ -9,10 +9,36 @@
     </div>
     <div class="container">
         <div class="meta">
+
             <ul class="breadcrumbs">
-                <li><a href="#">Ana Səhifə</a></li>
-                <li><a href="#">Haqqımızda</a></li>
-                <li><a href="#">İrəliləyiş nədir?</a></li>
+                <li>
+                    <a href="/">
+                        <span>Ana Səhifə</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </li>
+                @if($page->parent_id != 0)
+                    @php
+                        $slug = '/'.$page->parent->slug;
+                        
+                        if (isset($page->parent->parent->slug)) {
+                            $slug = '/'.$page->parent->parent->slug.'/'.$page->parent->slug;
+                        }
+                    @endphp
+                <li>
+                    <a href="{{$slug}}">
+                        <span>{{$page->parent->title}}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </a>
+                </li>
+                @endif
+                <li>
+                    <span>{{$page->title}}</span>
+                </li>
             </ul>
 
             <div class="date">

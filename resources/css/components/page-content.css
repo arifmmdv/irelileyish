@@ -28,4 +28,28 @@
             list-style: initial;
         }
     }
+
+    a {
+        color: $primary;
+        text-decoration: underline;
+        transition: 0.2s;
+
+        &:hover {
+            color: $green;
+        }
+    }
+}
+
+.gallery {
+    margin: 2rem 0 0;
+
+    .image {
+        display: block;
+        margin: 0 0 0.5rem;
+        box-shadow: 0 0 0 0.05rem rgba(8,60,130,.06), 0 0 1.25rem rgba(30,34,40,.04);
+
+        img {
+            border-radius: 0.25rem;
+        }
+    }
 }

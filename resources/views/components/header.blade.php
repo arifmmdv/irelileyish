@@ -46,8 +46,29 @@
             </div>
             @endif
             <div class="header-apply">
-                <a href="#" class="button">Müraciət edin</a> 
+                <a href="#apply" class="button apply-button">Müraciət edin</a> 
             </div>
         </div>
     </div>
 </header>
+
+<div id="apply" class="apply" style="display: none;">
+    <div class="row">
+        <div class="col col-6">
+            <a href="/muraciet-edin/sosial-terefdaslar">
+                <img src="/images/sosial-terefdaslar.jpg" alt="Sosial Tərəfdaşlar">
+            </a>
+        </div>
+        <div class="col col-6">
+            <a href="/muraciet-edin/tecrubeciler">
+                <img src="/images/tecrubeciler.jpg" alt="Təcrübəçilər">
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    var lightboxVideo = GLightbox({
+        selector: '.apply-button'
+    });
+</script>

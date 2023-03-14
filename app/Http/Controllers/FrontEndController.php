@@ -8,7 +8,7 @@ use App\Models\Section;
 class FrontEndController extends Controller
 {
     public function index() {
-        return view('welcome');
+        return view('templates.home');
     }
 
     public function page($slug) {

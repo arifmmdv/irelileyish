@@ -3,7 +3,7 @@
 
     .titleWrapper {
         display: block;
-        margin: 0 0 4rem;
+        margin: 0 0 2rem;
         text-align: center;
 
         p {
@@ -15,7 +15,7 @@
     .meta {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
         align-items: flex-start;
     }
 }

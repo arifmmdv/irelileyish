@@ -56,3 +56,14 @@
         }
     }
 }
+
+.apply {
+    a {
+        display: block;
+    }
+
+    .row {
+        padding-top: 20px;
+        margin: 0;
+    }
+}
